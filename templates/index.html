@@ -5,15 +5,18 @@
   </head>
   <body>
     {% if session %}
-        <h1>Welcome {{session.userinfo.name}}!</h1>
+        <div>
+            <a href="/stock">Stock</a>
+            <a href="/recipe">Recipe</a>
+            <a href="/sales">Sales</a>
+        </div>
+        <h4>You are signed in as {{session.userinfo.name}}!</h4>
         <p><a href="/logout">Logout</a></p>
     {% else %}
         <h1>Welcome Guest</h1>
         <p><a href="/login">Login</a></p>
     {% endif %}
 
-    <div>Stock Count</div>
-    <div>Recipe</div>
-    <div>Sales Count</div>
+    
   </body>
 </html>

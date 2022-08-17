@@ -36,6 +36,30 @@ def home():
     )
 
 
+@app.route("/stock_count")
+def get_stock_count():
+    return render_template(
+        "stock.html",
+        session=session.get("user")
+    )
+
+
+@app.route("/recipe")
+def get_recipe():
+    return render_template(
+        "recipe.html",
+        session=session.get("user")
+    )
+
+
+@app.route("/sales_count")
+def get_sales_count():
+    return render_template(
+        "sales.html",
+        session=session.get("user")
+    )
+
+
 @app.route("/callback", methods=["GET", "POST"])
 def callback():
     token = oauth.auth0.authorize_access_token()
