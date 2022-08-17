@@ -6,10 +6,11 @@
   <body>
     {% if session %}
         <div>
-            <a href="/stock_count">Stock</a>
+            <a href="/stock">Stock</a>
             <a href="/recipe">Recipe</a>
-            <a href="/sales_count">Sales</a>
+            <a href="/sales">Sales</a>
         </div>
+        <h3>Recipe Page<h3>
         <h4>You are signed in as {{session.userinfo.name}}!</h4>
         <p><a href="/logout">Logout</a></p>
     {% else %}
