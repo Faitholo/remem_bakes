@@ -5,16 +5,33 @@ import os
 from urllib.parse import quote_plus, urlencode
 from jose import jwt
 from urllib.request import urlopen
-
+from flask_sqlalchemy import SQLAlchemy
+from flask_moment import Moment
 from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, session, url_for, abort, request
+from logging import Formatter, FileHandler
+from flask_wtf import Form
+from forms import *
+from flask_migrate import Migrate
+import sys
+from sqlalchemy import desc
+from models import db, Sales, Staff, Recipe, Bread
+
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 app = Flask(__name__)
+moment = Moment(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///remem'
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+db.create_all()
+
+
 app.secret_key = env.get("APP_SECRET_KEY")
 AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
 ALGORITHMS = os.environ.get('ALGORITHMS')
@@ -159,7 +176,7 @@ def home():
 
 
 @app.route("/stock_count")
-@requires_auth('get:stock-count')
+#@requires_auth('get:stock-count')
 def get_stock_count():
     return render_template(
         "stock.html",
@@ -215,4 +232,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=env.get("PORT", 3000))
+    app.run(host="0.0.0.0", port=env.get("PORT", 5000))

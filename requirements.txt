@@ -1,7 +1,7 @@
-authlib>=1.0
-requests>=2.27.1
+authlib==1.0
+requests==2.27.1
 astroid==2.2.5
-flask>=2.0.3
+flask==2.0.3
 python-dotenv==0.20.0
 Click==7.1.2
 ecdsa==0.13.2
@@ -21,4 +21,8 @@ Werkzeug==2.0
 wrapt==1.11.1
 Flask-Cors==3.0.8
 python-jose
-python-dotenv==0.20.0
+babel==2.9.0
+python-dateutil==2.6.0
+flask-moment==0.11.0
+flask-wtf==0.14.3
+Flask-Migrate==2.3.1
