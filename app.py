@@ -2,6 +2,7 @@ from functools import wraps
 import json
 from os import environ as env
 import os
+from flask import Flask
 from urllib.parse import quote_plus, urlencode
 from jose import jwt
 from urllib.request import urlopen

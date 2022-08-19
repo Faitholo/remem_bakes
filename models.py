@@ -18,7 +18,7 @@ class Sales(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     date_time = db.Column(db.DateTime, nullable=False)
-    bread_type = db.Column(db.ARRAY(db.String(120)), nullable=False)
+    bread_type = db.Column(db.String(60), nullable=False)
     bread_size = db.Column(db.String(60), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)
@@ -36,7 +36,6 @@ class Bread(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = name = db.Column(db.String(60), nullable=False)
-    bread_shape = db.Column(db.String(60), nullable=False)
     bread_type = db.Column(db.String(60), nullable=False)
     bread_size = db.Column(db.String(60), nullable=False)
 
