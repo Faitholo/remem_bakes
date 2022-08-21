@@ -43,7 +43,21 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(60), nullable=False),
     sa.Column('bread_type', sa.String(60), nullable=False),
+    sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('bread_size', sa.String(60), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('stock',
+    sa.Column('id', sa.INTEGER(), nullable=False),
+    sa.Column('staff_id', sa.Integer(), nullable=False),
+    sa.Column('bread', sa.INTEGER(), nullable=False),
+    sa.Column('flour', sa.INTEGER(), nullable=False),
+    sa.Column('sugar', sa.INTEGER(), nullable=False),
+    sa.Column('milk', sa.INTEGER(), nullable=False),
+    sa.Column('butter', sa.INTEGER(), nullable=False),
+    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('date_time', sa.DateTime(), nullable=False),
+    sa.ForeignKeyConstraint(['staff_id'], ['staff.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

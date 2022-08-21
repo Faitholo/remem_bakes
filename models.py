@@ -11,6 +11,7 @@ class Staff(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), nullable=False)
     sales = db.relationship('Sales', backref='sales', lazy=True)
+    stock = db.relationship('Stock', backref='stock', lazy=True)
 
 
 class Sales(db.Model):
@@ -38,4 +39,13 @@ class Bread(db.Model):
     name = name = db.Column(db.String(60), nullable=False)
     bread_type = db.Column(db.String(60), nullable=False)
     bread_size = db.Column(db.String(60), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
 
+class Stock(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_time = db.Column(db.DateTime, nullable=False)
+    butter = db.Column(db.Integer, nullable=False)
+    sugar = db.Column(db.Integer, nullable=False)
+    flour = db.Column(db.Integer, nullable=False)
+    milk = db.Column(db.Integer, nullable=False)
+    staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)

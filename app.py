@@ -170,10 +170,40 @@ def requires_auth(permission=''):
 # Controllers API
 @app.route("/")
 def home():
+    bread = Bread.query.all()
+    return render_template(
+        "index.html",
+        bread=bread,
+        session=session.get("user")
+    )
+
+
+@app.route('/bread/create', methods=['GET'])
+def create_bread_form():
+  form = BreadForm()
+  return render_template('new_bread_count.html', form=form)
+
+
+@app.route("/bread/create", methods=['POST'])
+def add_bread():
+    if request.method == "POST":
+        form = BreadForm()
+        bread = Bread(name = form.name.data,
+                    bread_type = form.bread_type.data,
+                    quantity = form.quantity.data,
+                    bread_size = form.bread_size.data
+                    )
+        # Add and commit the received form input
+        db.session.add(bread)
+        db.session.commit()
+        db.session.close()
+    else:
+         db.session.rollback()
     return render_template(
         "index.html",
         session=session.get("user")
     )
+
 
 
 @app.route("/stock_count")

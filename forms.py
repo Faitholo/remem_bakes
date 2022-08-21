@@ -53,16 +53,9 @@ class Recipe(Form):
         ]
     )
 
-class Bread(Form):
+class BreadForm(Form):
     name = StringField(
         'name', validators=[DataRequired()]
-    )
-    bread_shape = SelectField(
-        'shape', validators=[DataRequired()],
-        choices=[
-            ('round', 'round'),
-            ('rectangle', 'rectangle')
-        ]
     )
     bread_type = SelectField(
         'type', validators=[DataRequired()],
@@ -79,4 +72,7 @@ class Bread(Form):
             ('10 inch', '10 inch'),
             ('7 inch', '7 inch')
         ]
+    )
+    quantity = IntegerField(
+        'quantity', validators=[DataRequired()]
     )
