@@ -88,6 +88,8 @@ def get_token_auth_header():
 
 
 def verify_decode_jwt(token):
+    """verifies and decodes the Access Token from the Authorization Header
+    """
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
@@ -142,6 +144,8 @@ def verify_decode_jwt(token):
 
 
 def check_permissions(permission, payload):
+    """ Checks for permissions in verified token
+    """
     if 'permissions' not in payload:
         abort(400)
 
